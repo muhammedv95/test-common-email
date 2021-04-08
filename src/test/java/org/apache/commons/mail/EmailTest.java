@@ -137,6 +137,26 @@ public class EmailTest {
 		assertEquals(hArray.size(), this.email.getHeaders().size());
         assertEquals(hArray.toString(), this.email.getHeaders().toString());
 	}
+	
+	
+	// addReplyTo Test Cases
+	@Test
+	public void testAddReplyTo() throws Exception {
+		// email.addCc(Test_Emails);
+		// assertEquals(3, this.email.getCcAddresses().size());
+		
+		List<InternetAddress> addReplyTest = new ArrayList<InternetAddress>();
+		addReplyTest.add(new InternetAddress("abc@def.com", "Name 1"));
+		addReplyTest.add(new InternetAddress("ghi@jkl.com", "Name 2"));
+		addReplyTest.add(new InternetAddress("mno@pqr.com", "Name 3")); 
+		
+		for(int i = 0; i < Test_Emails.length; i++)
+		{
+			this.email.addReplyTo(Test_Emails[i]);
+		}
+
+		assertEquals(addReplyTest.size(), this.email.getReplyToAddresses().size());
+	}
 
 	
 	
