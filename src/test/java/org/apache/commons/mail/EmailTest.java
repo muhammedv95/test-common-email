@@ -219,6 +219,16 @@ public class EmailTest {
 		assertEquals("smtp.gmail.com", email.getHostName());
 		
 	}
+	
+	// getSentDate() Test Cases
+	@Test
+	public void testGetSentDate()
+	{
+		Date testDate = Calendar.getInstance().getTime();
+        this.email.setSentDate(testDate);
+        assertEquals(testDate, this.email.getSentDate());
+
+	}
 
 
 	
