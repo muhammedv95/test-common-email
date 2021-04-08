@@ -157,6 +157,38 @@ public class EmailTest {
 
 		assertEquals(addReplyTest.size(), this.email.getReplyToAddresses().size());
 	}
+	
+	// buildMimeMessage() Test Cases
+	@Test
+	public void testBuildMimeMessage() throws Exception
+	{
+		email.setHostName("localHost");
+        email.setSSLOnConnect(true);
+		email.setSmtpPort(1234);
+		email.setFrom("a@b.com");
+		email.addTo("c@d.com");
+		email.setSubject("Test Mail");
+		
+		email.setCharset("ISO-8859-1");
+		email.setContent("Test Content", "Text/Plain");
+		email.addCc("test@abc.com");
+		email.addBcc("test@abc.com");
+		email.addHeader("Test", "abc");
+		email.addReplyTo("test@test.com", "Name");
+		email.setSentDate(this.email.getSentDate());
+		email.setAuthentication(null, null);
+		
+
+		MimeMessage bmsg = this.email.getMimeMessage();
+		
+		email.buildMimeMessage();
+		
+		if (email.isSSL())
+		{
+			email.send();
+		}
+		
+	}
 
 	
 	
