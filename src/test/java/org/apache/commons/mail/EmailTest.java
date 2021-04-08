@@ -229,6 +229,15 @@ public class EmailTest {
         assertEquals(testDate, this.email.getSentDate());
 
 	}
+	
+	// socket connection test cases
+	@Test
+	public void testSocket()
+	{
+		email.setSocketConnectionTimeout(100);
+		assertEquals(100, email.getSocketConnectionTimeout());
+		
+	}
 
 
 	
