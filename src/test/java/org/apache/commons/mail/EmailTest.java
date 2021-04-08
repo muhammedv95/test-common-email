@@ -189,6 +189,37 @@ public class EmailTest {
 		}
 		
 	}
+	
+	// getHostName Test Cases
+	@Test
+	public void testGetHostName() {
+		email.setHostName("localHost");
+		
+		String hostname = email.getHostName();
+		
+		assertEquals("localHost", hostname);
+	}
+	
+	@Test
+	public void testGetSetHostNameWithNull() { 
+		email.setHostName(null);
+		assertEquals(null, email.getHostName());
+	}
+	
+	@Test
+	public void testGetSetHostNameWithSession() { 
+   
+		
+		Properties props = new Properties();
+		// fill all the information like host name, etc.
+		Session session = Session.getDefaultInstance(props, null);
+		props.put(EmailConstants.MAIL_HOST, "smtp.gmail.com");
+		email.setMailSession(session);
+		//email.setHostName("localHost");
+		assertEquals("smtp.gmail.com", email.getHostName());
+		
+	}
+
 
 	
 	
