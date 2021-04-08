@@ -238,6 +238,25 @@ public class EmailTest {
 		assertEquals(100, email.getSocketConnectionTimeout());
 		
 	}
+	
+	// setFrom test cases
+	@Test
+	public void testSetFrom() throws Exception {
+
+		List<InternetAddress> testFrom = new ArrayList<InternetAddress>();
+		testFrom.add(new InternetAddress("abc@def.com"));
+		testFrom.add(new InternetAddress("ghi@jkl.com"));
+		testFrom.add(new InternetAddress("mno@pqr.com"));
+		
+		for(int i = 0; i < Test_Emails.length; i++)
+		{
+			this.email.setFrom(Test_Emails[i]);
+			
+			assertEquals(testFrom.get(i), this.email.getFromAddress());
+		}
+
+		
+	}
 
 
 	
