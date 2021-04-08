@@ -82,6 +82,61 @@ public class EmailTest {
 
 		assertEquals(addCcTesting.size(), this.email.getCcAddresses().size());
 	} 
+	
+	// addHeader(String name, String value) test cases
+	@Test
+	public void testAddHeader() throws Exception {
+		
+		
+		Map<String, String> headerTesting = new Hashtable<String, String>();
+		headerTesting.put("Test-One", "One");
+		headerTesting.put("Test-Two", "Two");
+		//headerTesting.put("Test-Three", "Sendmail");
+		
+		for (Iterator<Map.Entry<String, String>> items = headerTesting.entrySet().iterator(); items.hasNext();)
+		{
+			Map.Entry<String, String> headerEntry = items.next();
+			String hName = headerEntry.getKey();
+			String hValue = headerEntry.getValue();
+			this.email.addHeader(hName, hValue);
+		}
+		
+		assertEquals(headerTesting.size(), this.email.getHeaders().size());
+        assertEquals(headerTesting, this.email.getHeaders());
+		
+		
+        
+	}
+	
+	@Test
+	public void testAddHeaderException() {
+		Map<String, String> hTestEmpty = new Hashtable<String, String>();
+		hTestEmpty.put("Test-One", "");
+		hTestEmpty.put("", "Two");
+		
+		Map<?, ?> hArray = new Hashtable<Object, Object>();
+		for (Iterator<Map.Entry<String, String>> items = hTestEmpty.entrySet().iterator(); items.hasNext();)
+		{
+			Map.Entry<String, String> element = items.next();
+			try
+			{
+				String hName = element.getKey();
+				String hValue = element.getValue();
+				
+				this.email.addHeader(hName, hValue);
+				fail("Exception");
+			}
+			catch (IllegalArgumentException e)
+			{
+				assertTrue(true); 
+			} 
+		}
+		
+		//this.email.setHeaders(headerTesting);
+		
+		assertEquals(hArray.size(), this.email.getHeaders().size());
+        assertEquals(hArray.toString(), this.email.getHeaders().toString());
+	}
 
 	
 	
